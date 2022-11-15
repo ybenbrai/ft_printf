@@ -6,7 +6,7 @@
 /*   By: ybenbrai <ybenbrai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:25:32 by ybenbrai          #+#    #+#             */
-/*   Updated: 2022/11/15 16:07:41 by ybenbrai         ###   ########.fr       */
+/*   Updated: 2022/11/15 18:30:24 by ybenbrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ int ft_putstr(char *str)
 	int i;
 
 	i = 0;
+	if (str == NULL)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	while (str[i])
 	{
 		ft_putchar(str[i]);
@@ -63,9 +68,9 @@ int ft_putnbr(int n)
 int    ft_putHex(unsigned int n)
 {
     char *hexa;
-
-    hexa = "0123456789abcdef";
-    if (n >= 16)
+    
+	hexa = "0123456789ABCDEF";
+	if (n >= 16)
     {
         ft_putHex(n / 16);
         ft_putHex(n % 16);
@@ -73,6 +78,46 @@ int    ft_putHex(unsigned int n)
     else
         ft_putchar(hexa[n]);
         return(1);
+}
+
+int    ft_putHexUp(unsigned int n)
+{
+    char *hexa;
+	int	i;
+    
+	hexa = "0123456789ABCDEF";
+	i = 0;
+	if (n >= 16)
+    {
+        i+= ft_putHexUp(n / 16);
+        i+= ft_putHexUp(n % 16);
+    }
+    else
+	{
+        ft_putchar(hexa[n]);
+		i++;
+	}
+    return(i);
+}
+
+int    ft_putHexLow(unsigned int n)
+{
+    char *hexa;
+	int i;
+    
+	hexa = "0123456789abcdef";
+	i = 0;
+	if (n >= 16)
+    {
+        i+= ft_putHexLow(n / 16);
+        i+= ft_putHexLow(n % 16);
+    }
+    else
+	{
+        ft_putchar(hexa[n]);
+		i++;
+	}
+    return(i);
 }
 
 int     ft_putDec(int n)

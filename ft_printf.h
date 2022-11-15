@@ -6,7 +6,7 @@
 /*   By: ybenbrai <ybenbrai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:13:24 by ybenbrai          #+#    #+#             */
-/*   Updated: 2022/11/15 16:43:55 by ybenbrai         ###   ########.fr       */
+/*   Updated: 2022/11/15 17:44:56 by ybenbrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@
 #include <limits.h>
 #include <stdio.h>
 
-int   ft_printf(char *str, ...);
+int     ft_printf(const char *str, ...);
 int     ft_putnbr(int n);
 int     ft_putstr(char *str);
-int    ft_putchar(char c);
-int    ft_putHex(unsigned int n);
+int     ft_putchar(char c);
+int     ft_putHex(unsigned int n);
+int     ft_putHexLow(unsigned int n);
+int     ft_putHexUp(unsigned int n);
 int     ft_putDec(int n);
 
 #endif
