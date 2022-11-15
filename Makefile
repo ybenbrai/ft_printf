@@ -6,13 +6,13 @@
 #    By: ybenbrai <ybenbrai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 14:10:01 by ybenbrai          #+#    #+#              #
-#    Updated: 2022/11/15 14:14:47 by ybenbrai         ###   ########.fr        #
+#    Updated: 2022/11/15 16:50:22 by ybenbrai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_printf
+NAME = libftprintf.a
 
-SRC = main.c ft_printf.c
+SRC = ft_printf.c tools.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -20,7 +20,7 @@ HEADER = ft_printf.h
 
 CC = gcc
 # LIB = libft/libft.a
-FLAGS = -Wall -Wextra -Werror -fsanitize=address
+FLAGS = #-Wall -Wextra -Werror -fsanitize=address
 
 all :$(NAME) 
 

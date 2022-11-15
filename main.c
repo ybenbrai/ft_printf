@@ -6,7 +6,7 @@
 /*   By: ybenbrai <ybenbrai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:12:38 by ybenbrai          #+#    #+#             */
-/*   Updated: 2022/11/15 14:14:47 by ybenbrai         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:47:45 by ybenbrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@
 
 int main()
 {
-    ft_printf("Hello World");
-    return (0);
+    int d = 1024;
+    char c = 'H';
+    char *s = "Hello World";
+
+    ft_printf("%d %c %s", d, c, s);
+    printf("%d %c %s", d, c, s);
+
+    return (1);
 }
