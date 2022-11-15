@@ -6,7 +6,7 @@
 /*   By: ybenbrai <ybenbrai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:13:56 by ybenbrai          #+#    #+#             */
-/*   Updated: 2022/11/15 23:40:52 by ybenbrai         ###   ########.fr       */
+/*   Updated: 2022/11/15 23:47:41 by ybenbrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 static int	flag_checker(va_list args, char flag, int count)
 {
 	if (flag == '%')
-	{
-		ft_putchar('%');
-		count++;
-	}
+		count += ft_putchar('%');
 	else if (flag == 'c')
 		count += ft_putchar(va_arg(args, int));
 	else if (flag == 's')
@@ -29,7 +26,8 @@ static int	flag_checker(va_list args, char flag, int count)
 		count += ft_putnbr_base_p(va_arg(args, unsigned long long),
 				"0123456789abcdef");
 	}
-	else if (flag == 'd' || flag == 'i'){
+	else if (flag == 'd' || flag == 'i')
+	{
 		count += ft_putnbr(va_arg(args, int));
 	}
 	else if (flag == 'u')
@@ -41,11 +39,11 @@ static int	flag_checker(va_list args, char flag, int count)
 	return (count);
 }
 
-int		ft_printf(const char *str, ...)
+int	ft_printf(const char *str, ...)
 {
-	va_list args;
-	int     i;
-	int     count;
+	va_list		args;
+	int			i;
+	int			count;
 
 	i = 0;
 	count = 0;
@@ -54,7 +52,7 @@ int		ft_printf(const char *str, ...)
 	{
 		if (str[i] == '%')
 		{
-			count = flag_checker(args,str[i + 1], count);
+			count = flag_checker(args, str[i + 1], count);
 			i++;
 		}
 		else

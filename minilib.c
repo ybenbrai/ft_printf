@@ -6,42 +6,32 @@
 /*   By: ybenbrai <ybenbrai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 14:25:32 by ybenbrai          #+#    #+#             */
-/*   Updated: 2022/11/15 22:16:02 by ybenbrai         ###   ########.fr       */
+/*   Updated: 2022/11/15 23:53:52 by ybenbrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
-
-
-
-
-
-
-
-int     ft_putDec(int n)
+int	ft_putdec(int n)
 {
-
-    if (n == -2147483648)
-    {
-        ft_putstr("-2147483648");
-        return (1);
-    }
-    if (n < 0)
-    {
-        ft_putchar('-');
-        n = -n;
-    }
-    if (n >= 10)
-    {
-        ft_putDec(n / 10);
-        ft_putDec(n % 10);
-    }
-    else
-    {
-        ft_putchar(n + '0');
-  
-    }
-    return (1);
+	if (n == -2147483648)
+	{
+		ft_putstr("-2147483648");
+		return (1);
+	}
+	if (n < 0)
+	{
+		ft_putchar('-');
+		n = -n;
+	}
+	if (n >= 10)
+	{
+		ft_putdec(n / 10);
+		ft_putdec(n % 10);
+	}
+	else
+	{
+		ft_putchar(n + '0');
+	}
+	return (1);
 }
