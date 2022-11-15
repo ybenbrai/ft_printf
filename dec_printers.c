@@ -1,22 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   dec_printers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybenbrai <ybenbrai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 17:30:05 by ybenbrai          #+#    #+#             */
-/*   Updated: 2022/11/15 23:37:53 by ybenbrai         ###   ########.fr       */
+/*   Created: 2022/11/15 22:17:23 by ybenbrai          #+#    #+#             */
+/*   Updated: 2022/11/15 22:20:58 by ybenbrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int     main()
+int     ft_putnbrdec(unsigned int n)
 {
+    int i;
 
+    i = 0;
 
-    ft_printf("Hello ft%d_printf :)\n",8000);
-    printf("Hello ft%d_printf :)\n",8000);
-    return (1);
+    if (n < 0)
+    {
+        ft_putchar('-');
+        n = -n;
+        i++;
+    }
+    if (n >= 10)
+    {
+        i += ft_putnbrdec(n / 10);
+        i += ft_putnbrdec(n % 10);
+    }
+    else
+    {
+        ft_putchar(n + '0');
+        i++;
+    }
+    return (i);
 }
+

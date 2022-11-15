@@ -5,143 +5,104 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybenbrai <ybenbrai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 14:25:32 by ybenbrai          #+#    #+#             */
-/*   Updated: 2022/11/15 18:30:24 by ybenbrai         ###   ########.fr       */
+/*   Created: 2022/11/15 22:16:49 by ybenbrai          #+#    #+#             */
+/*   Updated: 2022/11/15 22:23:21 by ybenbrai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int    ft_putchar(char c)
+int     ft_strlen(const char *s)
 {
-	write(1, &c, 1);
-	return (1);
+    int i;
+
+    i = 0;
+    while (s[i])
+        i++;
+    return (i);
 }
 
-int ft_putstr(char *str)
+int    ft_nbrlen(int n)
 {
-	int i;
+    int    i;
 
-	i = 0;
-	if (str == NULL)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	while (str[i])
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
-	return (i);
-}
-
-int ft_putnbr(int n)
-{
-	int i;
-
-	i = 0;
-	if (n == -2147483648)
-	{
-		ft_putstr("-2147483648");
-		return (11);
-	}
-	if (n < 0)
-	{
-		ft_putchar('-');
-		n = -n;
-		i++;
-	}
-	if (n >= 10)
-	{
-		i += ft_putnbr(n / 10);
-		i += ft_putnbr(n % 10);
-	}
-	else
-	{
-		ft_putchar(n + '0');
-		i++;
-	}
-	return (i);
-}
-
-int    ft_putHex(unsigned int n)
-{
-    char *hexa;
-    
-	hexa = "0123456789ABCDEF";
-	if (n >= 16)
-    {
-        ft_putHex(n / 16);
-        ft_putHex(n % 16);
-    }
-    else
-        ft_putchar(hexa[n]);
-        return(1);
-}
-
-int    ft_putHexUp(unsigned int n)
-{
-    char *hexa;
-	int	i;
-    
-	hexa = "0123456789ABCDEF";
-	i = 0;
-	if (n >= 16)
-    {
-        i+= ft_putHexUp(n / 16);
-        i+= ft_putHexUp(n % 16);
-    }
-    else
-	{
-        ft_putchar(hexa[n]);
-		i++;
-	}
-    return(i);
-}
-
-int    ft_putHexLow(unsigned int n)
-{
-    char *hexa;
-	int i;
-    
-	hexa = "0123456789abcdef";
-	i = 0;
-	if (n >= 16)
-    {
-        i+= ft_putHexLow(n / 16);
-        i+= ft_putHexLow(n % 16);
-    }
-    else
-	{
-        ft_putchar(hexa[n]);
-		i++;
-	}
-    return(i);
-}
-
-int     ft_putDec(int n)
-{
-
+    i = 0;
     if (n == -2147483648)
-    {
-        ft_putstr("-2147483648");
-        return (1);
-    }
+        return (11);
     if (n < 0)
     {
-        ft_putchar('-');
         n = -n;
+        i++;
     }
     if (n >= 10)
-    {
-        ft_putDec(n / 10);
-        ft_putDec(n % 10);
-    }
+        i += ft_nbrlen(n / 10);
     else
+        i++;
+    return (i);
+}
+
+char    *ft_strdup(const char *s)
+{
+    char    *str;
+    int     i;
+
+    i = 0;
+    str = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+    if (str == NULL)
+        return (NULL);
+    while (s[i])
     {
-        ft_putchar(n + '0');
-  
+        str[i] = s[i];
+        i++;
     }
-    return (1);
+    str[i] = '\0';
+    return (str);
+}
+
+char    *ft_strrev(char *str)
+{
+    int     i;
+    int     j;
+    char    tmp;
+
+    i = 0;
+    j = ft_strlen(str) - 1;
+    while (i < j)
+    {
+        tmp = str[i];
+        str[i] = str[j];
+        str[j] = tmp;
+        i++;
+        j--;
+    }
+    return (str);
+}
+
+char    *ft_itoa(int n)
+{
+    int     i;
+    int     sign;
+    char    *str;
+
+    i = 0;
+    sign = 1;
+    if (n == -2147483648)
+        return (ft_strdup("-2147483648"));
+    if (n < 0)
+    {
+        sign = -1;
+        n = -n;
+    }
+    str = (char *)malloc(sizeof(char) * (ft_nbrlen(n) + 1));
+    if (str == NULL)
+        return (NULL);
+    while (n > 0)
+    {
+        str[i++] = (n % 10) + '0';
+        n = n / 10;
+    }
+    if (sign == -1)
+        str[i++] = '-';
+    str[i] = '\0';
+    return (ft_strrev(str));
 }
